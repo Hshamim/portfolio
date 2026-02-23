@@ -48,7 +48,7 @@ export const Hero = () => {
                     </div>
 
                     <div className="flex flex-wrap gap-8 pt-10 justify-center lg:justify-start items-center">
-                        <Link href={contactInfo.cvLink} className="trk-btn flex items-center gap-2 font-bold !px-8 !py-[20px] !rounded-[12px]" download>
+                        <Link href={contactInfo.cvLink} className="inline-flex items-center gap-2 font-bold px-8 py-5 rounded-xl bg-[#C4EF17] text-[#0A0A09] hover:bg-[#d4ff20] transition-colors" download>
                             Download CV <Download size={20} strokeWidth={2.5} className="ml-1" />
                         </Link>
                         <button className="flex items-center gap-4 group hover:opacity-80 transition-opacity text-white font-bold text-[16px]">
