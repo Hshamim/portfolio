@@ -1,35 +1,9 @@
 "use client";
 import { Section } from "./Section";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
-
-const projects = [
-    {
-        title: "Tork Mobile App",
-        category: "App Design",
-        image: "bg-secondary/20",
-        link: "#"
-    },
-    {
-        title: "E-Commerce Web",
-        category: "Web Design",
-        image: "bg-primary/20",
-        link: "#"
-    },
-    {
-        title: "Finance Dashboard",
-        category: "UI/UX Design",
-        image: "bg-purple-500/20",
-        link: "#"
-    },
-    {
-        title: "Healthcare Portal",
-        category: "Web Development",
-        image: "bg-blue-500/20",
-        link: "#"
-    }
-];
+import { projectsData } from "@/lib/data";
 
 export const Projects = () => {
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -78,12 +52,19 @@ export const Projects = () => {
                     className="flex gap-8 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-8"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
-                    {projects.map((project, index) => (
+                    {projectsData.map((project, index) => (
                         <div
                             key={index}
                             className="min-w-[320px] md:min-w-[450px] snap-center group"
                         >
-                            <div className={`w-full h-[300px] md:h-[350px] rounded-[32px] ${project.image} border border-white/5 mb-6 overflow-hidden relative flex items-center justify-center`}>
+                            <div className={`w-full h-[300px] md:h-[350px] rounded-[32px] bg-[#121211] border border-white/5 mb-6 overflow-hidden relative flex items-center justify-center`}>
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                />
                                 <div className="absolute inset-0 bg-[#0A0A09]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px] z-10">
                                     <div className="w-16 h-16 rounded-full bg-[#C4EF17] flex items-center justify-center text-[#0A0A09]">
                                         <ArrowRight size={28} className="-rotate-45" />
@@ -91,10 +72,9 @@ export const Projects = () => {
                                 </div>
                                 <div className="absolute top-6 left-6 z-20">
                                     <span className="px-5 py-2 rounded-full bg-[#0A0A09]/60 backdrop-blur-md text-[#6B7FFF] text-xs font-bold uppercase tracking-wider border border-white/5">
-                                        {project.category}
+                                        {project.tag}
                                     </span>
                                 </div>
-                                <span className="text-white/20 font-bold text-2xl">Project Thumbnail</span>
                             </div>
 
                             <h3 className="text-2xl md:text-3xl font-extrabold text-white group-hover:text-[#C4EF17] transition-colors ml-2">

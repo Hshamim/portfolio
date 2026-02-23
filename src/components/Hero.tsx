@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 import Link from "next/link";
 import { Play, Download } from "lucide-react";
 import Image from "next/image";
 import { Section } from "./Section";
 import { motion } from "framer-motion";
+import { contactInfo } from "@/lib/data";
 
 export const Hero = () => {
     return (
@@ -47,7 +48,7 @@ export const Hero = () => {
                     </div>
 
                     <div className="flex flex-wrap gap-8 pt-10 justify-center lg:justify-start items-center">
-                        <Link href="#contact" className="trk-btn flex items-center gap-2 font-bold !px-8 !py-[20px] !rounded-[12px]">
+                        <Link href={contactInfo.cvLink} className="trk-btn flex items-center gap-2 font-bold !px-8 !py-[20px] !rounded-[12px]" download>
                             Download CV <Download size={20} strokeWidth={2.5} className="ml-1" />
                         </Link>
                         <button className="flex items-center gap-4 group hover:opacity-80 transition-opacity text-white font-bold text-[16px]">
@@ -140,4 +141,3 @@ export const Hero = () => {
 };
 
 export default Hero;
-

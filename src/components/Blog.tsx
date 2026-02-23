@@ -1,27 +1,7 @@
 import Link from "next/link";
 import { Section } from "./Section";
 import { ArrowRight } from "lucide-react";
-
-const posts = [
-    {
-        title: "How to Design a Perfect UI",
-        date: "Oct 12, 2023",
-        excerpt: "Learn the robust rules of UI design and how to apply them to your projects.",
-        category: "Design",
-    },
-    {
-        title: "The Future of Web Development",
-        date: "Nov 05, 2023",
-        excerpt: "Explore the latest trends and technologies shaping the future of the web.",
-        category: "Development",
-    },
-    {
-        title: "Mastering Tailwind CSS",
-        date: "Dec 10, 2023",
-        excerpt: "A comprehensive guide to building beautiful layouts with Tailwind CSS.",
-        category: "Coding",
-    },
-];
+import { blogData } from "@/lib/data";
 
 export const Blog = () => {
     return (
@@ -41,8 +21,8 @@ export const Blog = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.map((post, index) => (
-                        <div key={index} className="group overflow-hidden">
+                    {blogData.map((post, index) => (
+                        <div key={post.id} className="group overflow-hidden">
                             <div className="relative h-[250px] rounded-[32px] overflow-hidden bg-[#121211] border border-white/5 mb-6">
                                 <div className="absolute inset-0 bg-[#C4EF17]/5 group-hover:bg-[#C4EF17]/10 transition-colors" />
                                 <div className="absolute top-6 left-6 z-20">
@@ -58,7 +38,7 @@ export const Blog = () => {
                             </div>
                             <div className="px-2">
                                 <div className="flex items-center gap-2 text-[#6B7FFF] text-xs font-bold uppercase tracking-widest mb-3">
-                                    <span>{post.category}</span>
+                                    <span>{post.tag}</span>
                                 </div>
                                 <h4 className="text-[22px] md:text-[24px] font-extrabold text-white group-hover:text-[#C4EF17] transition-colors leading-tight">
                                     <Link href="#">{post.title}</Link>

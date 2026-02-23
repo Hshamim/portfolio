@@ -1,8 +1,9 @@
-﻿"use client";
-import { Mail, Phone, ExternalLink } from "lucide-react";
+"use client";
+import { Mail, Phone } from "lucide-react";
 import { Section } from "./Section";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { contactInfo, socialLinks } from "@/lib/data";
 
 export const Contact = () => {
     return (
@@ -36,8 +37,8 @@ export const Contact = () => {
                             </div>
                             <div>
                                 <p className="text-[#9FA0A6] text-sm uppercase tracking-widest font-bold mb-1">Email</p>
-                                <a href="mailto:hello@olivernoah.com" className="text-2xl md:text-3xl font-extrabold text-white hover:text-[#C4EF17] transition-colors">
-                                    hello@olivernoah.com
+                                <a href={`mailto:${contactInfo.email}`} className="text-2xl md:text-3xl font-extrabold text-white hover:text-[#C4EF17] transition-colors">
+                                    {contactInfo.email}
                                 </a>
                             </div>
                         </div>
@@ -49,7 +50,7 @@ export const Contact = () => {
                             <div>
                                 <p className="text-[#9FA0A6] text-sm uppercase tracking-widest font-bold mb-1">WhatsApp</p>
                                 <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" className="text-2xl md:text-3xl font-extrabold text-white hover:text-[#C4EF17] transition-colors">
-                                    +1 (234) 567 890
+                                    {contactInfo.phone}
                                 </a>
                             </div>
                         </div>
@@ -58,13 +59,13 @@ export const Contact = () => {
                     <div className="pt-10 border-t border-white/5">
                         <p className="text-[#9FA0A6] font-bold uppercase tracking-widest text-sm mb-6">Socials</p>
                         <div className="flex flex-wrap gap-4">
-                            {['Dribbble', 'Twitter', 'Facebook', 'LinkedIn'].map((social) => (
+                            {socialLinks.map((social) => (
                                 <Link
-                                    key={social}
-                                    href="#"
+                                    key={social.name}
+                                    href={social.href}
                                     className="px-8 py-4 rounded-full border border-white/5 bg-[#121211] text-white font-bold hover:bg-[#C4EF17] hover:text-[#0A0A09] hover:border-[#C4EF17] transition-all"
                                 >
-                                    {social}
+                                    {social.name}
                                 </Link>
                             ))}
                         </div>
@@ -117,4 +118,3 @@ export const Contact = () => {
         </Section>
     );
 };
-
