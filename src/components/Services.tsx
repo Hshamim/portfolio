@@ -2,8 +2,8 @@
 import { ArrowRight } from "lucide-react";
 import { Section } from "./Section";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { servicesData } from "@/lib/data";
+import { Button } from "./ui/Button";
 
 export const Services = () => {
     return (
@@ -24,9 +24,9 @@ export const Services = () => {
                     <p className="text-[#9FA0A6] text-lg leading-relaxed max-w-[450px]">
                         Experience excellence with our UI/UX services. From user research to seamless design implementation, we in crafting innovative solutions experiences and drive engagement for the users of business and services.
                     </p>
-                    <Link href="#contact" className="trk-btn inline-flex font-bold !px-10 !py-[18px]">
+                    <Button href="#contact">
                         Hire Me
-                    </Link>
+                    </Button>
                 </div>
 
                 {/* Vertical Divider for Desktop */}

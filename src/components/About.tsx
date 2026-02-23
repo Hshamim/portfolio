@@ -2,8 +2,8 @@
 import { Section } from "./Section";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Button } from "./ui/Button";
 
 export const About = () => {
     return (
@@ -71,9 +71,9 @@ export const About = () => {
                     </div>
 
                     <div className="pt-6">
-                        <Link href="#contact" className="trk-btn inline-flex font-bold !px-10 !py-[18px]">
+                        <Button href="#contact">
                             Hire Me
-                        </Link>
+                        </Button>
                     </div>
                 </div>
             </div>

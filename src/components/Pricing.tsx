@@ -1,9 +1,9 @@
 "use client";
 import { Check } from "lucide-react";
-import Link from "next/link";
 import { Section } from "./Section";
 import { motion } from "framer-motion";
 import { pricingData } from "@/lib/data";
+import { Button } from "./ui/Button";
 
 export const Pricing = () => {
     return (
@@ -53,12 +53,13 @@ export const Pricing = () => {
                                 ))}
                             </ul>
 
-                            <Link
+                            <Button
                                 href="#contact"
-                                className={`trk-btn w-full !rounded-full !py-4 font-bold transition-all ${plan.active ? 'bg-[#C4EF17] text-[#0A0A09]' : 'trk-btn-outline !bg-transparent text-[#C4EF17] border-[#C4EF17]/30 hover:!bg-[#C4EF17] hover:!text-[#0A0A09]'}`}
+                                variant={plan.active ? "primary" : "outline"}
+                                className="w-full rounded-full"
                             >
                                 Buy Now
-                            </Link>
+                            </Button>
                         </motion.div>
                     ))}
                 </div>

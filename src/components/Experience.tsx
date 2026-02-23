@@ -2,8 +2,8 @@
 import { ArrowUpRight } from "lucide-react";
 import { Section } from "./Section";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { experienceData } from "@/lib/data";
+import { Button } from "./ui/Button";
 
 export const Experience = () => {
     return (
@@ -21,9 +21,9 @@ export const Experience = () => {
                             My <span className="text-[#C4EF17]">Experience</span>
                         </h2>
                     </div>
-                    <Link href="#contact" className="trk-btn !px-8 !py-4 font-bold">
+                    <Button href="#contact">
                         Contact Me
-                    </Link>
+                    </Button>
                 </div>
 
                 <div className="relative">
