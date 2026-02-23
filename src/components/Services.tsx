@@ -3,29 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Section } from "./Section";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-const services = [
-    {
-        id: "01",
-        title: "Ui/Ux Design",
-        description: "Designing compelling and easy-to-use user interfaces for web and mobile apps.",
-    },
-    {
-        id: "02",
-        title: "Web Design",
-        description: "Creating visually appealing and user-friendly website designs that convert.",
-    },
-    {
-        id: "03",
-        title: "App Design",
-        description: "Designing mobile applications that provide seamless user experiences on iOS and Android.",
-    },
-    {
-        id: "04",
-        title: "Web Development",
-        description: "Building robust and scalable web applications using modern technologies.",
-    }
-];
+import { servicesData } from "@/lib/data";
 
 export const Services = () => {
     return (
@@ -56,22 +34,17 @@ export const Services = () => {
 
                 {/* Right Side: List of Services */}
                 <div className="lg:col-span-6 flex flex-col gap-4">
-                    {[
-                        "Visual Design",
-                        "Web Design",
-                        "Mobile App Design",
-                        "UI/UX Design"
-                    ].map((title, index) => (
+                    {servicesData.map((service, index) => (
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            key={index}
+                            key={service.id}
                             className="group flex items-center justify-between p-8 rounded-[16px] bg-[#121211] border border-white/5 hover:border-[#C4EF17] transition-all cursor-pointer"
                         >
                             <h3 className="text-[22px] md:text-[26px] font-bold text-white group-hover:text-white transition-colors">
-                                {title}
+                                {service.title}
                             </h3>
 
                             <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white group-hover:bg-[#C4EF17] group-hover:text-[#0A0A09] group-hover:border-[#C4EF17] transition-all shrink-0">

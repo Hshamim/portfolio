@@ -1,7 +1,22 @@
 import { Github, Twitter, Linkedin, Facebook } from "lucide-react";
 import Link from "next/link";
+import { navLinks, socialLinks } from "@/lib/data";
 
 export const Footer = () => {
+    // Helper to map string icon names to Lucide components if needed,
+    // or just render the icons directly if we keep the mapping simple.
+    // For now, let's keep the Lucide icons imported but use a mapping or switch if dynamic.
+    // Since socialLinks is just data, we can map the index to the Icon array if we want, or just hardcode the icons in the UI loop like before but use the href from data.
+
+    // Actually, to fully "standardize", we might want the icon component in the data, but that breaks serializability sometimes.
+    // A better approach for this simple refactor: Map the name to the component.
+    const iconMap: Record<string, any> = {
+        "Facebook": Facebook,
+        "Twitter": Twitter,
+        "LinkedIn": Linkedin,
+        "Github": Github
+    };
+
     return (
         <footer className="py-20 bg-[#0A0A09] relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 relative z-10 flex flex-col items-center">
@@ -16,28 +31,31 @@ export const Footer = () => {
 
                 {/* Links */}
                 <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-12">
-                    {['Home', 'About Me', 'Services', 'Portfolio', 'Experience', 'Contact Us'].map((item) => (
+                    {navLinks.map((item) => (
                         <Link
-                            key={item}
-                            href={`#${item.toLowerCase().replace(' ', '-')}`}
+                            key={item.name}
+                            href={item.href}
                             className="text-white font-bold hover:text-[#C4EF17] transition-all"
                         >
-                            {item}
+                            {item.name}
                         </Link>
                     ))}
                 </div>
 
                 {/* Socials */}
                 <div className="flex gap-6 mb-12">
-                    {[Facebook, Twitter, Linkedin, Github].map((Icon, idx) => (
-                        <a
-                            key={idx}
-                            href="#"
-                            className="w-12 h-12 rounded-full border border-white/5 bg-[#121211] flex items-center justify-center text-white hover:bg-[#C4EF17] hover:text-[#0A0A09] hover:border-[#C4EF17] transition-all"
-                        >
-                            <Icon size={20} />
-                        </a>
-                    ))}
+                    {socialLinks.map((social, idx) => {
+                        const Icon = iconMap[social.name] || Github;
+                        return (
+                            <a
+                                key={idx}
+                                href={social.href}
+                                className="w-12 h-12 rounded-full border border-white/5 bg-[#121211] flex items-center justify-center text-white hover:bg-[#C4EF17] hover:text-[#0A0A09] hover:border-[#C4EF17] transition-all"
+                            >
+                                <Icon size={20} />
+                            </a>
+                        );
+                    })}
                 </div>
 
                 <div className="w-full h-[1px] bg-white/5 mb-8" />

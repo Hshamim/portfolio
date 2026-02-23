@@ -3,33 +3,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import { Section } from "./Section";
 import { motion } from "framer-motion";
-
-const pricingPlans = [
-    {
-        name: "Basic Plan",
-        price: "$49",
-        period: "/Hour",
-        description: "Perfect for simple projects and tasks.",
-        features: ["Web Design", "Mobile App Design", "Wireframing", "Prototyping"],
-        popular: false,
-    },
-    {
-        name: "Standard Plan",
-        price: "$99",
-        period: "/Hour",
-        description: "Ideal for most mid-sized projects.",
-        features: ["Web Design", "Mobile App Design", "Wireframing", "Prototyping", "Source Files", "Responsive Design"],
-        popular: true,
-    },
-    {
-        name: "Premium Plan",
-        price: "$149",
-        period: "/Hour",
-        description: "For complex and large-scale projects.",
-        features: ["Web Design", "Mobile App Design", "Wireframing", "Prototyping", "Source Files", "Responsive Design", "SEO Optimization", "Priority Support"],
-        popular: false,
-    },
-];
+import { pricingData } from "@/lib/data";
 
 export const Pricing = () => {
     return (
@@ -49,20 +23,20 @@ export const Pricing = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center max-w-6xl mx-auto">
-                    {pricingPlans.map((plan, index) => (
+                    {pricingData.map((plan, index) => (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            key={index}
-                            className={`relative p-8 md:p-10 rounded-[40px] bg-[#121211] border group hover:border-[#C4EF17]/30 transition-all flex flex-col h-full ${plan.popular ? 'border-[#C4EF17]/50 shadow-2xl scale-105 z-10' : 'border-white/5'}`}
+                            key={plan.id}
+                            className={`relative p-8 md:p-10 rounded-[40px] bg-[#121211] border group hover:border-[#C4EF17]/30 transition-all flex flex-col h-full ${plan.active ? 'border-[#C4EF17]/50 shadow-2xl scale-105 z-10' : 'border-white/5'}`}
                         >
                             <div className="mb-8">
                                 <h4 className="text-2xl font-bold text-white mb-2">{plan.name}</h4>
                                 <div className="flex items-end gap-1 mt-4">
                                     <span className="text-6xl font-extrabold text-[#C4EF17] leading-none">{plan.price}</span>
-                                    <span className="text-[#9FA0A6] font-semibold text-lg pb-1">{plan.period}</span>
+                                    <span className="text-[#9FA0A6] font-semibold text-lg pb-1">{plan.unit}</span>
                                 </div>
                             </div>
 
@@ -81,7 +55,7 @@ export const Pricing = () => {
 
                             <Link
                                 href="#contact"
-                                className={`trk-btn w-full !rounded-full !py-4 font-bold transition-all ${plan.popular ? 'bg-[#C4EF17] text-[#0A0A09]' : 'trk-btn-outline !bg-transparent text-[#C4EF17] border-[#C4EF17]/30 hover:!bg-[#C4EF17] hover:!text-[#0A0A09]'}`}
+                                className={`trk-btn w-full !rounded-full !py-4 font-bold transition-all ${plan.active ? 'bg-[#C4EF17] text-[#0A0A09]' : 'trk-btn-outline !bg-transparent text-[#C4EF17] border-[#C4EF17]/30 hover:!bg-[#C4EF17] hover:!text-[#0A0A09]'}`}
                             >
                                 Buy Now
                             </Link>

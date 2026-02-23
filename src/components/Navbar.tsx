@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { navLinks } from "@/lib/data";
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,14 +15,6 @@ export const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    const links = [
-        { name: "Home", href: "#", hasDropdown: true },
-        { name: "About Me", href: "#about", hasDropdown: false },
-        { name: "Services", href: "#services", hasDropdown: true },
-        { name: "Pages", href: "#", hasDropdown: true },
-        { name: "Contact Us", href: "#contact", hasDropdown: false },
-    ];
 
     return (
         <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-[#0A0A09] shadow-md border-b border-white/5 py-4" : "bg-transparent py-6"}`}>
@@ -41,7 +34,7 @@ export const Navbar = () => {
 
                     <div className="hidden md:flex justify-center flex-1">
                         <div className="flex items-center space-x-8">
-                            {links.map((link) => (
+                            {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}
@@ -72,7 +65,7 @@ export const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden bg-[#0A0A09] border-b border-gray-800 pb-4">
                     <div className="px-4 pt-2 pb-3 space-y-2 text-center">
-                        {links.map((link) => (
+                        {navLinks.map((link) => (
                             <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="flex items-center justify-center gap-1 px-3 py-3 rounded-md text-base font-bold text-white hover:text-primary">
                                 {link.name}
                                 {link.hasDropdown && <ChevronDown size={16} />}
