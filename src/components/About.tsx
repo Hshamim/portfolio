@@ -15,10 +15,12 @@ export const About = () => {
                         <div className="absolute inset-0 bg-[#C4EF17] opacity-[0.05] rounded-full blur-[100px] -z-10" />
                         <div className="w-full h-full rounded-[40px] overflow-hidden border border-white/5 relative z-10">
                             <Image
-                                src="/images/about-person.png"
+                                src="/images/about/1.png"
                                 alt="About Me"
                                 fill
                                 className="object-cover"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                priority
                             />
                         </div>
 
