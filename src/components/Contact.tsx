@@ -108,7 +108,7 @@ export const Contact = () => {
 
                         <button
                             type="submit"
-                            className="trk-btn w-full !py-5 !rounded-[20px] font-bold text-lg"
+                            className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-[20px] font-bold transition-all duration-300 transform active:scale-95 bg-[#C4EF17] text-[#0A0A09] hover:bg-[#d4ff20] w-full text-lg shadow-[0_4px_20px_rgba(196,239,23,0.2)] hover:shadow-[0_4px_25px_rgba(196,239,23,0.4)]"
                         >
                             Send Message
                         </button>

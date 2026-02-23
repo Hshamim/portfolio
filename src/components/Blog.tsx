@@ -1,23 +1,28 @@
+"use client";
 import Link from "next/link";
 import { Section } from "./Section";
 import { ArrowRight } from "lucide-react";
 import { blogData } from "@/lib/data";
+import { Button } from "./ui/Button";
 
 export const Blog = () => {
     return (
         <Section id="blog" className="py-24 bg-[#0A0A09] relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 relative z-10">
-                <div className="text-center mb-16 space-y-4">
-                    <div className="flex items-center justify-center gap-2 text-[#6B7FFF] font-semibold text-[16px] uppercase tracking-[0.2em] mb-4">
-                        <svg width="24" height="24" viewBox="0 0 63 64" fill="none">
-                            <path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" />
-                        </svg>
-                        Blog
+                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-2 text-[#6B7FFF] font-semibold text-[16px] uppercase tracking-[0.2em] mb-4">
+                            <svg width="24" height="24" viewBox="0 0 63 64" fill="none">
+                                <path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" />
+                            </svg>
+                            Blog
+                        </div>
+                        <h2 className="text-[44px] md:text-[54px] font-extrabold text-white leading-[1.1]">
+                            Every Single <br />
+                            <span className="text-[#C4EF17]">Latest</span> Blog
+                        </h2>
                     </div>
-                    <h2 className="text-[44px] md:text-[54px] font-extrabold text-white leading-[1.1]">
-                        Every Single <br />
-                        <span className="text-[#C4EF17]">Latest</span> Blog
-                    </h2>
+                    <Button href="#" className="hidden md:inline-flex">View All</Button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

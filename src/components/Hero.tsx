@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
 import { Play, Download } from "lucide-react";
 import Image from "next/image";
 import { Section } from "./Section";
 import { motion } from "framer-motion";
 import { contactInfo } from "@/lib/data";
+import { Button } from "./ui/Button";
 
 export const Hero = () => {
     return (
@@ -48,9 +48,9 @@ export const Hero = () => {
                     </div>
 
                     <div className="flex flex-wrap gap-8 pt-10 justify-center lg:justify-start items-center">
-                        <Link href={contactInfo.cvLink} className="inline-flex items-center gap-2 font-bold px-8 py-5 rounded-xl bg-[#C4EF17] text-[#0A0A09] hover:bg-[#d4ff20] transition-colors" download>
+                        <Button href={contactInfo.cvLink} download>
                             Download CV <Download size={20} strokeWidth={2.5} className="ml-1" />
-                        </Link>
+                        </Button>
                         <button className="flex items-center gap-4 group hover:opacity-80 transition-opacity text-white font-bold text-[16px]">
                             <span className="w-16 h-16 rounded-full bg-[#6B7FFF] flex items-center justify-center text-white group-hover:scale-105 transition-all shadow-[0_0_30px_rgba(107,127,255,0.4)]">
                                 <Play size={24} fill="currentColor" className="ml-1" />
