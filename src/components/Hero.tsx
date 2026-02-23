@@ -5,14 +5,13 @@ import { Section } from "./Section";
 import { motion } from "framer-motion";
 import { contactInfo } from "@/lib/data";
 import { Button } from "./ui/Button";
+import { DiamondStar } from "./ui/Decorations";
+
+const marqueeItems = ["Art Design", "Dashboard", "App Design", "Mobile App", "UX Design", "Wireframe", "Branding", "Web Design"];
 
 export const Hero = () => {
     return (
-        <Section className="min-h-[100vh] flex items-center pt-32 pb-24 relative overflow-hidden text-white">
-            {/* Background glows matching Torkfolio */}
-            <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-[#C4EF17] opacity-[0.05] rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] bg-[#C4EF17] opacity-[0.03] rounded-full blur-[120px] pointer-events-none" />
-
+        <Section className="min-h-[100vh] flex items-center pt-32 pb-24 relative overflow-hidden text-white bg-grid">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto relative z-10 px-4 md:px-0">
                 {/* Text Content */}
                 <motion.div
@@ -25,12 +24,18 @@ export const Hero = () => {
                         Hey Hi! ðŸ‘‹
                     </div>
 
-                    <h1 className="text-[44px] md:text-[70px] font-extrabold tracking-tighter text-white leading-[1] mt-4">
+                    <h1 className="text-[44px] md:text-[70px] font-extrabold tracking-tighter text-white leading-[1] mt-4 relative">
+                        {/* Loop Arrow Decoration */}
+                        <div className="absolute -top-12 left-0 hidden lg:block">
+                             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.5 0C5.596 0 0 5.596 0 12.5S5.596 25 12.5 25 25 19.404 25 12.5" stroke="#C4EF17" strokeWidth="2.5" strokeLinecap="round" />
+                                <path d="M20 8l5-5M25 3h-5M25 3v5" stroke="#C4EF17" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </div>
+
                         I&apos;m Oliver Noah <br />
                         <span className="flex items-center justify-center lg:justify-start gap-4 mt-2">
-                            <svg width="44" height="44" viewBox="0 0 63 64" fill="none">
-                                <path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" />
-                            </svg>
+                            <DiamondStar color="#6B7FFF" size={48} />
                             <span className="text-[#C4EF17]">UI/UX</span> <span className="text-white">Designer</span>
                         </span>
                     </h1>
@@ -39,12 +44,6 @@ export const Hero = () => {
                         <p className="max-w-[480px] text-[18px] text-[#9FA0A6] leading-[1.6] mx-auto lg:mx-0 font-medium">
                             A blend of creativity, empathy, and technical expertise, I strive to design interfaces that not only look users at every interaction.
                         </p>
-                        {/* Missing Blue Star below description */}
-                        <div className="hidden lg:block absolute -bottom-16 left-0">
-                            <svg width="35" height="35" viewBox="0 0 63 64" fill="none" className="opacity-80">
-                                <path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" />
-                            </svg>
-                        </div>
                     </div>
 
                     <div className="flex flex-wrap gap-8 pt-10 justify-center lg:justify-start items-center">
@@ -60,7 +59,7 @@ export const Hero = () => {
                     </div>
                 </motion.div>
 
-                {/* Avatar Image container mapped exactly */}
+                {/* Avatar Image */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -68,7 +67,7 @@ export const Hero = () => {
                     className="relative flex justify-center lg:justify-end mt-20 lg:mt-0"
                 >
                     <div className="relative w-[380px] h-[450px] md:w-[500px] md:h-[650px] flex items-end justify-center">
-                        {/* More accurate paint blob SVG path */}
+                        {/* Paint Blob */}
                         <div className="absolute top-[10%] left-[-10%] w-[120%] h-[95%] pointer-events-none -z-10 flex items-center justify-center">
                             <svg viewBox="0 0 400 350" className="w-[110%] h-[110%] rotate-2" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -81,7 +80,6 @@ export const Hero = () => {
                             </svg>
                         </div>
 
-                        {/* Actual Image Person */}
                         <div className="relative z-10 w-full h-full flex flex-col items-center justify-end">
                             <Image
                                 src="/images/person.png"
@@ -93,45 +91,31 @@ export const Hero = () => {
                             />
                         </div>
 
-                        {/* Floating Green Curly Arrow Top Left - Simplified path */}
-                        <motion.div animate={{ y: [-10, 10, -10], rotate: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute top-[5%] left-[0%] lg:left-[-10%] z-20 w-[80px] h-[80px]">
-                            <svg viewBox="0 0 100 100" fill="none" className="w-full h-full">
-                                <path d="M20 30 C 40 10, 80 20, 80 50 C 80 80, 40 90, 20 70 M 20 70 L 35 75 M 20 70 L 15 55" stroke="#C4EF17" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+                        {/* Floating Shapes */}
+                        <motion.div animate={{ y: [-10, 10, -10], rotate: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute top-[5%] left-[0%] lg:left-[-10%] z-20">
+                            <DiamondStar color="#C4EF17" size={64} />
+                        </motion.div>
+
+                        <motion.div animate={{ y: [15, -15, 15], rotate: [0, 20, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute top-[30%] right-[-5%] lg:right-[-15%] z-20">
+                             <svg width="110" height="116" viewBox="0 0 177 187" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M88.5 0V187M0 93.5H177M26 26L151 161M151 26L26 161" stroke="#6B7FFF" strokeWidth="4" strokeLinecap="round" opacity="0.4" />
                             </svg>
                         </motion.div>
 
-                        {/* Floating Green Star Right */}
-                        <motion.div animate={{ y: [15, -15, 15], rotate: [0, 20, 0] }} transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }} className="absolute top-[30%] right-[-5%] lg:right-[-15%] z-20 w-[60px] h-[60px]">
-                            <svg viewBox="0 0 63 64" fill="none" className="w-full h-full">
-                                <path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#C4EF17" />
-                            </svg>
-                        </motion.div>
-
-                        {/* Floating Blue Star Bottom Left */}
-                        <motion.div animate={{ y: [-10, 10, -10], rotate: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }} className="absolute bottom-[25%] left-[-10%] lg:left-[-25%] z-20 w-[65px] h-[65px]">
-                            <svg viewBox="0 0 63 64" fill="none" className="w-full h-full">
-                                <path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" />
-                            </svg>
+                        <motion.div animate={{ y: [-10, 10, -10], rotate: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }} className="absolute bottom-[25%] left-[-10%] lg:left-[-25%] z-20">
+                            <DiamondStar color="#6B7FFF" size={40} />
                         </motion.div>
                     </div>
                 </motion.div>
             </div>
 
-            {/* Infinite Scrolling Marquee Border Bottom */}
-            <div className="absolute bottom-0 left-0 w-full border-t border-b border-[#C4EF17]/20 bg-[#0A0A09]/80 backdrop-blur-md py-6 z-20 overflow-hidden">
-                <div className="flex gap-16 w-max animate-marquee items-center text-[#fbffed] text-[20px] font-bold tracking-[0.1em] uppercase">
-                    {[1, 2].map((group) => (
-                        <div key={group} className="flex gap-16 items-center">
-                            <span>Art Design</span>
-                            <svg width="24" height="24" viewBox="0 0 63 64" fill="none"><path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" /></svg>
-                            <span>Dashboard</span>
-                            <svg width="24" height="24" viewBox="0 0 63 64" fill="none"><path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#C4EF17" /></svg>
-                            <span>App Design</span>
-                            <svg width="24" height="24" viewBox="0 0 63 64" fill="none"><path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" /></svg>
-                            <span>Mobile App</span>
-                            <svg width="24" height="24" viewBox="0 0 63 64" fill="none"><path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#C4EF17" /></svg>
-                            <span>UX Design</span>
-                            <svg width="24" height="24" viewBox="0 0 63 64" fill="none"><path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" /></svg>
+            {/* Marquee Section */}
+            <div className="absolute bottom-0 left-0 w-full border-t border-b border-[#C4EF17]/20 bg-[#0A0F02] py-5 z-20 overflow-hidden">
+                <div className="flex gap-12 w-max animate-marquee items-center text-[#fbeff5] text-[18px] font-bold tracking-[0.08em] uppercase">
+                    {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
+                        <div key={i} className="flex items-center gap-12">
+                            <span>{item}</span>
+                            <DiamondStar color={i % 2 === 0 ? "#6B7FFF" : "#C4EF17"} size={20} />
                         </div>
                     ))}
                 </div>

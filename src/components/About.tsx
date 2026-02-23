@@ -4,10 +4,44 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/Button";
+import { DiamondStar, SparkleIcon } from "./ui/Decorations";
+import { useEffect, useRef, useState } from "react";
+
+function CounterNumber({ start, end, suffix = "" }: { start: number; end: number; suffix?: string }) {
+    const [val, setVal] = useState(start);
+    const ref = useRef<HTMLSpanElement>(null);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting) {
+                    obs.disconnect();
+                    let cur = start;
+                    const step = Math.ceil((end - start) / 60);
+                    const timer = setInterval(() => {
+                        cur = Math.min(cur + step, end);
+                        setVal(cur);
+                        if (cur >= end) clearInterval(timer);
+                    }, 20);
+                }
+            },
+            { threshold: 0.5 }
+        );
+        obs.observe(el);
+        return () => obs.disconnect();
+    }, [start, end]);
+    return (
+        <span ref={ref}>
+            {val}
+            {suffix}
+        </span>
+    );
+}
 
 export const About = () => {
     return (
-        <Section id="about" className="py-24 bg-[#0A0A09] relative overflow-hidden">
+        <Section id="about" className="py-24 bg-color relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center relative z-10">
                 {/* Left Side: Portrait and Ornaments */}
                 <div className="relative order-2 lg:order-1">
@@ -24,11 +58,29 @@ export const About = () => {
                             />
                         </div>
 
-                        {/* Floating elements matching Torkfolio */}
-                        <motion.div animate={{ y: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute -top-10 -right-10 w-24 h-24 z-20">
-                            <svg viewBox="0 0 63 64" fill="none" className="w-full h-full">
-                                <path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#C4EF17" />
-                            </svg>
+                        {/* Floating Counter Cards */}
+                        <motion.div
+                            initial={{ x: -20, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.8 }}
+                            className="absolute bottom-10 -left-10 z-20 bg-[#121211] p-6 rounded-[20px] border border-white/10 shadow-2xl hidden md:block"
+                        >
+                            <h3 className="text-3xl font-bold text-white mb-1">
+                                <CounterNumber start={1920} end={2000} suffix="+" />
+                            </h3>
+                            <p className="text-[#9FA0A6] text-sm">Clients all Over the World</p>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ x: 20, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="absolute top-10 -right-10 z-20 bg-[#121211] p-6 rounded-[20px] border border-white/10 shadow-2xl hidden md:block"
+                        >
+                            <h3 className="text-3xl font-bold text-white mb-1">
+                                <CounterNumber start={0} end={98} suffix="%" />
+                            </h3>
+                            <p className="text-[#9FA0A6] text-sm">Satisfied Customers!</p>
                         </motion.div>
                     </div>
                 </div>
@@ -36,46 +88,49 @@ export const About = () => {
                 {/* Right SideContent */}
                 <div className="space-y-8 order-1 lg:order-2">
                     <div className="flex items-center gap-2 text-[#6B7FFF] font-semibold text-[16px] uppercase tracking-[0.2em]">
-                        <svg width="24" height="24" viewBox="0 0 63 64" fill="none">
-                            <path d="M31.8294 63.9998C31.7677 46.3484 17.9887 32.0591 1.00012 32.0591C18.0266 32.0591 31.8294 17.7055 31.8294 -0.000183105C31.8908 17.6512 45.67 31.9405 62.6587 31.9405C45.6319 31.9405 31.8294 46.2941 31.8294 63.9998Z" fill="#6B7FFF" />
-                        </svg>
+                        <SparkleIcon />
                         About Me
                     </div>
                     <h2 className="text-[44px] md:text-[54px] font-extrabold text-white leading-[1.1]">
-                        UI/UX Design <br />
-                        <span className="text-[#C4EF17]">Process</span>
+                        <span className="text-[#C4EF17]">UI/UX</span> Design <br />
+                        Process
                     </h2>
                     <p className="text-[#9FA0A6] text-lg leading-relaxed">
                         I am a UI/UX designer, and I’m very passionate and dedicated to my work. With 09 years experience as a professional.
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                        <div className="flex items-center gap-4">
-                            <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#C4EF17] text-2xl font-bold">
-                                09
+                    <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-4 p-4 rounded-xl bg-[#0a0a09] border border-white/5">
+                            <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#1a1a19]">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="21" height="17" rx="2" stroke="#C4EF17" strokeWidth="1.5" /><path d="M2 8l10.5 7L23 8" stroke="#C4EF17" strokeWidth="1.5" strokeLinecap="round" /></svg>
                             </div>
                             <div>
-                                <div className="text-white font-bold text-lg">Years</div>
-                                <div className="text-[#9FA0A6]">Of Experience</div>
+                                <p className="text-[#9FA0A6] text-xs uppercase tracking-wider font-bold">Email</p>
+                                <a href="mailto:hello@torkfolio.com" className="text-white font-bold hover:text-[#C4EF17] transition-colors">hello@torkfolio.com</a>
                             </div>
                         </div>
-                        <div className="flex items-center gap-4">
-                            <div className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#C4EF17] text-2xl font-bold">
-                                98%
+                        <div className="flex items-center gap-4 p-4 rounded-xl bg-[#0a0a09] border border-white/5">
+                            <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-[#1a1a19]">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 4a2 2 0 00-2 2v13a2 2 0 002 2h13a2 2 0 002-2V6a2 2 0 00-2-2h-1.5l-1-2.5h-8L7.5 4H6z" stroke="#C4EF17" strokeWidth="1.5" /><circle cx="12.5" cy="12.5" r="3" stroke="#C4EF17" strokeWidth="1.5" /></svg>
                             </div>
                             <div>
-                                <div className="text-white font-bold text-lg">Satisfied</div>
-                                <div className="text-[#9FA0A6]">Clients Every Day</div>
+                                <p className="text-[#9FA0A6] text-xs uppercase tracking-wider font-bold">Phone</p>
+                                <a href="tel:+1234567890" className="text-white font-bold hover:text-[#C4EF17] transition-colors">+1 (234) 567 890</a>
                             </div>
                         </div>
                     </div>
 
                     <div className="pt-6">
                         <Button href="#contact">
-                            Hire Me
+                            Let's Work
                         </Button>
                     </div>
                 </div>
+            </div>
+
+            {/* Background Shape */}
+            <div className="absolute top-20 right-10 opacity-20 pointer-events-none">
+                <DiamondStar color="#6B7FFF" size={30} />
             </div>
         </Section>
     );
